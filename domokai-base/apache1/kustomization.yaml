@@ -1,4 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- templates/pod.yaml
+- apache1-namespace.yaml
+- apache1-deployment.yaml
+- apache1-service.yaml

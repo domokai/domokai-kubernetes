@@ -6,6 +6,7 @@ metadata:
     "app.kubernetes.io/instance": "apache1"
     "app.kubernetes.io/component": "apache1-main"
   name: apache1-svc
+  namespace: apache1
 spec:
   ports:
   - port: 80

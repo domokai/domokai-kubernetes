@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: apache1
+  labels:
+    "app.kubernetes.io/name": 'apache1'
+    "app.kubernetes.io/instance": "apache1"
