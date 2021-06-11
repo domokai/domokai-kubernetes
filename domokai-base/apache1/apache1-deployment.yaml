@@ -19,10 +19,10 @@ spec:
       - image: KUSTOMIZED
         imagePullPolicy: "IfNotPresent"
         name: apache1
-        resources:
-            requests:
-              cpu: 512m
-              memory: 1G
-            limits:
-              cpu: 512m
-              memory: 1G
+        # resources:
+        #     requests:
+        #       cpu: 512m
+        #       memory: 1G
+        #     limits:
+        #       cpu: 512m
+        #       memory: 1G
