@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: &Apache1Labels
+    "app.kubernetes.io/name": 'apache1'
+    "app.kubernetes.io/instance": "apache1"
+    "app.kubernetes.io/component": "apache1-main"
+  name: apache1
+spec:
+  replicas: 1
+  selector:
+    matchLabels: *Apache1Labels
+  template:
+    metadata:
+      labels: *Apache1Labels
+    spec:
+      containers:
+      - image: "domokai/apache-httpd-beta:v1.0.0"
+        imagePullPolicy: "IfNotPresent"
+        name: apache1
