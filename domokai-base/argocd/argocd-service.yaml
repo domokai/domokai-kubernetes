@@ -1,0 +1,111 @@
+---
+# Source: argo-cd/templates/argocd-application-controller/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-cd-domokai-argocd-application-controller
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-application-controller
+    app.kubernetes.io/instance: argo-cd-domokai
+    app.kubernetes.io/component: application-controller
+    app.kubernetes.io/part-of: argocd
+spec:
+  ports:
+  - name: https-controller
+    port: 8082
+    targetPort: 8082
+  selector:
+    app.kubernetes.io/name: argocd-application-controller
+    app.kubernetes.io/instance: argo-cd-domokai
+---
+# Source: argo-cd/templates/argocd-repo-server/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-repo-server
+    app.kubernetes.io/instance: argo-cd-domokai
+    app.kubernetes.io/component: repo-server
+    app.kubernetes.io/part-of: argocd
+  name: argo-cd-domokai-argocd-repo-server
+  namespace: argocd
+spec:
+  ports:
+  - name: https-repo-server
+    protocol: TCP
+    port: 8081
+    targetPort: repo-server
+  selector:
+    app.kubernetes.io/name: argocd-repo-server
+    app.kubernetes.io/instance: argo-cd-domokai
+---
+# Source: argo-cd/templates/argocd-server/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-cd-domokai-argocd-server
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/instance: argo-cd-domokai
+    app.kubernetes.io/component: server
+    app.kubernetes.io/part-of: argocd
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: server
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: server
+  selector:
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/instance: argo-cd-domokai
+---
+# Source: argo-cd/templates/dex/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-cd-domokai-argocd-dex-server
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-dex-server
+    app.kubernetes.io/instance: argo-cd-domokai
+    app.kubernetes.io/component: dex-server
+    app.kubernetes.io/part-of: argocd
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5556
+    targetPort: http
+  - name: grpc
+    protocol: TCP
+    port: 5557
+    targetPort: grpc
+  selector:
+    app.kubernetes.io/name: argocd-dex-server
+    app.kubernetes.io/instance: argo-cd-domokai
+---
+# Source: argo-cd/templates/redis/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: argo-cd-domokai-argocd-redis
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-redis
+    app.kubernetes.io/instance: argo-cd-domokai
+    app.kubernetes.io/component: redis
+    app.kubernetes.io/part-of: argocd
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app.kubernetes.io/name: argocd-redis
+    app.kubernetes.io/instance: argo-cd-domokai
